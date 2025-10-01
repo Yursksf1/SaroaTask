@@ -38,8 +38,25 @@ Integración
 El frontend debe consumir tu API REST
 ```
 
+
+# Instalacion:
+Desde la raiz del proyecto, crear el archivo
+.env
+```
+# Django
+DEBUG=True
+SECRET_KEY=tu_clave_super_secreta
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
+
+# PostgreSQL
+DATABASE_NAME=mi_base
+DATABASE_USER=mi_usuario
+DATABASE_PASSWORD=mi_clave
+DATABASE_HOST=db
+DATABASE_PORT=5432
+```
+
 comandos de docker:
 ```
-docker-compose down -v
 docker-compose up --build
 ```
