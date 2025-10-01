@@ -60,3 +60,10 @@ comandos de docker:
 ```
 docker-compose up --build
 ```
+
+comandos docker para ejecutar comandos de de python
+```
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser
+
+```
