@@ -1,0 +1,48 @@
+
+services:
+  db:
+    image: postgres:15
+    container_name: saoratrask_postgres_db
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      
+
+  web:
+      build:
+        context: ./backend
+        dockerfile: Dockerfile
+      container_name: saoratrask_django_web
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - ./backend:/code
+      ports:
+        - "8000:8000"
+      env_file: .env
+      depends_on:
+        - db
+
+  frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      container_name: saoratrask_react_frontend
+      volumes:
+        - ./frontend:/app # Monta el código fuente para desarrollo
+        - /app/node_modules # Evita conflictos con node_modules
+      ports:
+        - "3000:3000" # Puerto del servidor de desarrollo
+      environment:
+        - CHOKIDAR_USEPOLLING=true # Habilita el hot reload en entornos Docker
+      command: npm start # Ejecuta el servidor de desarrollo
+      depends_on:
+        - web
+
+volumes:
+  pgdata:

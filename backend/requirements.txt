@@ -1,0 +1,16 @@
+asgiref==3.9.1
+Django==5.2.4
+django-cors-headers==4.7.0
+psycopg2-binary==2.9.10
+sqlparse==0.5.3
+social-auth-app-django
+djangorestframework-simplejwt
+dj-rest-auth
+dj-rest-auth[with_social]==2.2.5
+django-allauth
+djangorestframework
+django-extensions
+pytz==2022.7.1
+openpyxl==3.0.9
+tzlocal==2.1
+python-dateutil==2.8.1
